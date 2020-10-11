@@ -271,7 +271,7 @@ def gh_branch_prefix():
         return git("config", "pr-chain.branch-prefix").strip()
     except subprocess.CalledProcessError:
         # git config exits with an error code if the config key is not found.
-        return ""
+        return gh_client().get_user().login + "/"
 
 
 def strip_gh_branch_prefix(branch: str) -> str:
